@@ -1,42 +1,121 @@
-# sv
+# Swagger on Steroids
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern, feature-rich API client for testing OpenAPI/Swagger APIs. Built with SvelteKit and designed for developers who want a fast, keyboard-friendly alternative to Postman.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+### OpenAPI Integration
+- Load OpenAPI 3.x specs from URL or paste JSON directly
+- Automatic endpoint parsing with path/query parameters
+- Request body schema detection
+- Tag-based endpoint grouping with collapsible sections
 
-```sh
-# create a new project
-npx sv create my-app
-```
+### Request Builder
+- Auto-populated parameters from spec with type hints
+- Required field indicators
+- JSON body editor with syntax highlighting
+- Custom headers editor
+- Request body persistence per endpoint
 
-To recreate this project with the same configuration:
+### Environment Variables
+- Create and manage environment variables
+- Variable autocomplete with `{{` trigger
+- **Built-in dynamic variables:**
+  - `{{$timestamp}}` - Unix timestamp in milliseconds
+  - `{{$isoTimestamp}}` - ISO 8601 timestamp
+  - `{{$date}}` - Today's date (YYYY-MM-DD)
+  - `{{$randomInt}}` - Random integer (0-1000)
+  - `{{$randomUUID}}` - Random UUID v4
+  - `{{$randomString}}` - Random 8-char alphanumeric
+  - `{{$randomEmail}}` - Random email address
+  - `{{$randomBoolean}}` - Random true/false
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --install npm .
-```
+### Authentication
+- Bearer token authentication
+- API Key authentication (header or query parameter)
+- Persistent auth configuration
 
-## Developing
+### Response Viewer
+- Formatted JSON with collapsible tree view
+- Response headers display
+- Raw response view
+- Status code and timing display
+- HTML response detection and rendering
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Multiple Base URLs
+- Configure multiple environments (dev, staging, prod)
+- Color-coded URL labels for visual distinction
+- Quick switching between environments
 
-```sh
+### UI/UX
+- Three-panel resizable layout
+- Keyboard-friendly navigation
+- Persistent accordion states
+- Save and load API specs
+- Dark theme optimized for developers
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/swagger-on-steroid.git
+cd swagger-on-steroid
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+### Building for Production
 
-To create a production version of your app:
-
-```sh
+```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Usage
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+1. **Load an API spec** - Enter an OpenAPI spec URL in the header or use the dropdown to paste JSON
+2. **Select an endpoint** - Browse endpoints in the left panel, grouped by tags
+3. **Configure request** - Fill in parameters, headers, and body as needed
+4. **Use variables** - Type `{{` to autocomplete environment or built-in variables
+5. **Send request** - Click Send or use keyboard shortcut
+6. **View response** - Inspect the response in the right panel
+
+## Tech Stack
+
+- **Framework:** SvelteKit
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **Build:** Vite
+- **Deployment:** Static adapter (works with any static host)
+
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── components/
+│   │   ├── endpoints/    # Endpoint navigation
+│   │   ├── layout/       # Header, panels, status bar
+│   │   ├── modals/       # Auth, env, base URL config
+│   │   ├── request/      # Request builder components
+│   │   ├── response/     # Response viewer components
+│   │   └── shared/       # Reusable components
+│   ├── stores/           # Svelte stores for state
+│   ├── types/            # TypeScript definitions
+│   └── utils/            # Parsers, interpolation, storage
+└── routes/               # SvelteKit routes
+```
+
+## License
+
+MIT
